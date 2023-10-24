@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  database:
+    image: postgres:latest
+    container_name: web-app-database
+    env_file:
+      - .env
+    ports:
+      - ${DATABASE_PORT}:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - web-app-db:/var/lib/postgresql/data
+
+volumes:
+  web-app-db:
